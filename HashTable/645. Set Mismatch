@@ -1,0 +1,18 @@
+class Solution {
+    public int[] findErrorNums(int[] nums) {
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        int n=nums.length;
+        int sum=0,ans=0,expSum=0;
+        for(int i=0 ; i<n ; i++){
+            sum+=nums[i];
+            hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);
+            if(hm.get(nums[i])==2) ans=nums[i];
+        }
+        int[] output=new int[2];
+        expSum=n*(n+1)/2;
+        int diff=expSum-sum;
+        output[0]=ans;
+        output[1]=ans+diff;
+        return output;
+    }
+}
