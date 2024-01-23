@@ -1,0 +1,40 @@
+class Solution {
+    private int result=0;
+    public int maxLength(List<String> arr) {
+        if(arr.size()==0 || arr == null) {
+            return 0;
+        }
+        helper(arr,0,"");
+        return result;
+        
+    }
+    public void helper(List<String> arr,int ind,String path){
+        boolean flag=isUniqueChar(path);
+        if(flag){
+            result=Math.max(path.length(),result);
+        }
+        if(ind==arr.size() || !flag){
+            return;
+        }
+        for(int i=ind;i<arr.size();i++){
+            helper(arr,i+1,path+arr.get(i));
+        }
+    }
+    public boolean isUniqueChar(String s){
+        HashSet<Character> hs=new HashSet<>();
+        for(char ch : s.toCharArray()){
+            if(hs.contains(ch)){
+                return false;
+            }
+            hs.add(ch);
+        }
+        return true;
+    }
+}
+// HashSet<Character> hs=new HashSet<>();
+        // for(int i=0;i<arr.size();i++){
+        //     for(int j=0;j<arr.get(i).length();j++){
+        //         hs.add(arr.get(i).charAt(j));
+        //     }
+        // }
+        // return hs.size();
