@@ -1,0 +1,39 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int pseudoPalindromicPaths (TreeNode root) {
+        List<Integer> l=new ArrayList<>();
+        return diffPaths(root,l);
+    }
+    public int diffPaths(TreeNode root,List<Integer> list){
+        if(root == null){
+            return 0;
+        }
+        if( !list.contains(root.val)){
+            list.add(root.val);
+        }
+        else{
+            list.remove(Integer.valueOf(root.val)); // by default removes takes index so we use              Integer.valueOf()
+        }
+        if(root.left==null && root.right==null){
+            if(list.size()<=1) return 1;
+            return 0;
+        }
+        int left=diffPaths(root.left,new ArrayList<>(list));
+        int right=diffPaths(root.right,new ArrayList<>(list));
+        return left + right;
+    }
+}
