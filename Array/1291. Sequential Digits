@@ -1,0 +1,18 @@
+class Solution {
+    public List<Integer> sequentialDigits(int low, int high) {
+        List<Integer> l=new ArrayList<>();
+        for(int i=1;i<=9;i++){
+            int a=i;
+            int nextD=i+1;
+            while(a<=high && nextD<=9){
+                a=a*10+nextD;
+                if(low <= a && a <= high){
+                    l.add(a);
+                }
+                nextD++;
+            }
+        }
+        Collections.sort(l);
+        return l;
+    }
+}
