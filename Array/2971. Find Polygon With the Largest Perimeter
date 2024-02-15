@@ -1,0 +1,15 @@
+class Solution {
+    public long largestPerimeter(int[] nums) {
+        Arrays.sort(nums);
+        long[] dp=new long[nums.length];
+        long ans=-1;
+        dp[0]=nums[0];
+        for(int i=1;i<nums.length;i++){
+            dp[i]=dp[i-1]+nums[i];
+            if(dp[i-1]>nums[i]){
+                ans=Math.max(ans,dp[i-1]+nums[i]);
+            }
+        }
+        return ans;
+    }
+}
