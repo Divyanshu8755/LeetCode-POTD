@@ -1,0 +1,23 @@
+//My Approach
+class Solution {
+    public boolean isPowerOfTwo(int inpN) {
+        int sol=0;
+		while(inpN>0){
+			sol+=1;
+			inpN=(inpN&(inpN-1));
+		}
+		return sol==1 ? true : false;
+    }
+} 
+
+
+//Better Approach
+
+/*
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if(n<=0) return false;
+        return (n&(n-1))==0;
+    }
+}
+*/
