@@ -1,0 +1,22 @@
+class Solution {
+    public int pivotInteger(int n) {
+        int sum=(n*(n+1))/2;
+        int l=1,r=n;
+        int lSum=0,rSum=0;
+        while(l<=r){
+            int m=l+(r-1);
+            lSum=(m*(m+1))/2;
+            rSum=sum-((m-1)*m)/2;
+            if(lSum==rSum){
+                return m;
+            }
+            else if(lSum<rSum){
+                l=m+1;
+            }
+            else{
+                r=m-1;
+            }
+        }
+        return -1;
+    }
+}
