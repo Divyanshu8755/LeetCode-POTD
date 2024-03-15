@@ -1,0 +1,37 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int n=nums.length;
+        int ans[]=new int[n];
+        Arrays.fill(ans,1);
+        //Prefix
+        for(int i=1;i<n;i++){
+            ans[i]=ans[i-1]*nums[i-1];
+        }
+        //Suffix
+        int suffix=1;
+        for(int i=n-1;i>=0;i--){
+            ans[i]=ans[i]*suffix;
+            suffix*=nums[i];
+        }
+        return ans;
+    }
+}
+
+/*//O(N^2) Approach
+int x=0;
+        int sum=1;
+        int ind=0;
+        int n=nums.length;
+        int[] ans=new int[n];
+        while(x<n){
+            if(ind!=x) sum*=nums[ind];
+            ind++;
+            if(ind==n){
+                ans[x]=sum;
+                sum=1;
+                x++;
+                ind=0;
+            } 
+        }
+        return ans;
+ */
