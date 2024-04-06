@@ -1,0 +1,30 @@
+class Solution {
+    public String minRemoveToMakeValid(String s) {
+        String ans;
+        int cntA=0;
+        char[] arr=s.toCharArray();
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='(') cntA++;
+            else if(s.charAt(i)==')'){
+                if(cntA == 0){
+                    arr[i]='$';
+                }
+                else cntA--;
+            }
+        }
+        for(int i=arr.length-1;i>=0;i--){
+            if(cntA>0 && arr[i]=='('){
+                arr[i]='$';
+                cntA--;
+            }
+        }
+        int p=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i] != '$'){
+                arr[p++]=arr[i];
+            }
+        }
+        ans=new String(arr).substring(0,p);
+        return ans;
+    }
+}
