@@ -1,0 +1,26 @@
+class Solution {
+    public int maximalRectangle(char[][] matrix) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length==0){
+            return 0;
+        }
+        int r=matrix.length;
+        int c=matrix[0].length;
+        int heights[]=new int[c+1];
+        int area=0;
+        for(char[] row:matrix){
+            for(int i=0;i<c;i++){
+                heights[i]=(row[i]=='1') ? heights[i]+1 : 0;
+            }
+            int l=heights.length;
+            for(int i=0;i<l;i++){
+                int minheight=Integer.MAX_VALUE;
+                for(int j=i;j<l;j++){
+                    minheight=Math.min(minheight,heights[j]);
+                    int a=minheight*(j-i+1);
+                    area=Math.max(area,a);
+                }
+            }
+        }
+        return area;
+    }
+}
