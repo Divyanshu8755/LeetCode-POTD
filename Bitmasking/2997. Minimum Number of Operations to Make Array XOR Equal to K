@@ -1,0 +1,15 @@
+class Solution {
+    public int minOperations(int[] nums, int k) {
+        int xor=0;
+        for(int i=0;i<nums.length;i++){
+            xor^=nums[i];
+        }
+        int kxor=xor^k;
+        int x=0;
+        while(kxor!=0){
+            x+=kxor & 1;
+            kxor>>=1;
+        }
+        return x;
+    }
+}
