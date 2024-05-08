@@ -1,0 +1,29 @@
+class Solution {
+    public String[] findRelativeRanks(int[] score) {
+        String[] stArr=new String[score.length];
+        Queue<Integer> pq=new PriorityQueue<>(Collections.reverseOrder());
+        HashMap<Integer,String> hm=new HashMap<>();
+        for(int i=0;i<score.length;i++){
+            pq.offer(score[i]);
+        }
+        if(!pq.isEmpty()){
+            hm.put(pq.poll(),"Gold Medal");
+        }
+        if(!pq.isEmpty()){
+            hm.put(pq.poll(),"Silver Medal");
+        }
+        if(!pq.isEmpty()){
+            hm.put(pq.poll(),"Bronze Medal");
+        }
+        int j=4;
+        while(!pq.isEmpty()){
+            int a=pq.poll();
+            hm.put(a,Integer.toString(j));
+            j++;
+        }
+        for(int i=0;i<score.length;i++){
+            stArr[i]=hm.get(score[i]);
+        }
+        return stArr;
+    }
+}
