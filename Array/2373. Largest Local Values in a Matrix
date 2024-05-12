@@ -1,0 +1,22 @@
+class Solution {
+    public int[][] largestLocal(int[][] grid) {
+        int n=grid.length;
+        int m=n-2;
+        int[][] maxLocal=new int[m][m];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<m;j++){
+                maxLocal[i][j]=maxL(grid,i,j);
+            }
+        }
+        return maxLocal;
+    }
+    public int maxL(int[][] grid,int a,int b){
+        int max=0;
+        for(int i=a;i<a+3;i++){
+            for(int j=b;j<b+3;j++){
+                max=Math.max(grid[i][j],max);
+            }
+        }
+        return max;
+    }
+}
